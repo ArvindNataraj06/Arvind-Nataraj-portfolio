@@ -1,26 +1,77 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* Dark palette supplied in the design specifications. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
+  --background: #151d39;
+  --section: #242d49;
+  --surface: #26304e;
+  --foreground: #f5f7ff;
+  --muted: #b9c5dc;
+  --accent: #b8a2ff;
+  --amber: #ffc45e;
+  --tag-background: #1c3048;
+  --tag-border: #365e85;
+  --tag-foreground: #ffc45e;
+  --border: #58658b;
+}
+
+/* Light values approximate the screenshot, not exported Figma tokens.
+   Darker accents keep text readable on pale surfaces. */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --background: #f5f6ff;
+  --section: #e6ebf7;
+  --surface: #ffffff;
+  --foreground: #151d39;
+  --muted: #465779;
+  --accent: #6d35ce;
+  --amber: #895000;
+  --tag-background: #fff4dc;
+  --tag-border: #b87916;
+  --tag-foreground: #754300;
+  --border: #8188a6;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-section: var(--section);
+  --color-surface: var(--surface);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-amber: var(--amber);
+  --color-tag-background: var(--tag-background);
+  --color-tag-border: var(--tag-border);
+  --color-tag-foreground: var(--tag-foreground);
+  --color-border: var(--border);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+    line-height: 1.6;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+
+  code, kbd, pre, samp {
+    font-family: var(--font-jetbrains-mono), monospace;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
 }
