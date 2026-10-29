@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-labelledby="title">
+  <title id="title">AN.</title>
+  <rect width="64" height="64" rx="12" fill="#151D39"/>
+  <!-- Outlined letters stay consistent without loading a font. -->
+  <path fill="#FFFFFF" fill-rule="evenodd" d="M4 46 13 18h8l9 28h-8l-1.5-5h-7L12 46Zm11-11h4l-2-8Z"/>
+  <path fill="#FFFFFF" d="M31 46V18h7l10 16V18h7v28h-7L38 30v16Z" transform="translate(-1 0)"/>
+  <rect x="56" y="39" width="6" height="7" rx="1" fill="#B8A2FF"/>
+</svg>
