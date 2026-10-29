@@ -1,4 +1,5 @@
-import { ArrowRight, Code2, Download, ImageIcon } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
+import { DeveloperTerminal } from "@/components/developer-terminal";
 import { contactDetails, profile } from "@/data/portfolio";
 import { ActionLink } from "@/components/action-link";
 
@@ -35,25 +36,10 @@ export function Hero() {
           </p>
         </div>
 
-        <figure className="hero-artwork" aria-labelledby="illustration-caption">
+        <div className="hero-artwork">
           <div className="hero-glow" aria-hidden="true" />
-          <div className="illustration-placeholder">
-            <div className="mb-6 flex w-full items-center justify-between border-b border-accent/20 pb-4 text-accent" aria-hidden="true">
-              <Code2 size={28} strokeWidth={1.5} />
-              <span className="flex gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-accent/50" />
-                <span className="h-1.5 w-1.5 rounded-full bg-accent/50" />
-                <span className="h-1.5 w-1.5 rounded-full bg-accent/50" />
-              </span>
-            </div>
-            <ImageIcon size={48} strokeWidth={1} className="text-accent" aria-hidden="true" />
-            <div id="illustration-caption" className="mt-5 text-center">
-              <span className="block text-base font-medium text-foreground">Developer illustration</span>
-              <span className="mt-2 block font-mono text-xs text-muted">Temporary illustration placeholder</span>
-              <span className="mt-3 block text-xs leading-6 text-muted">Final Figma artwork will replace this panel.</span>
-            </div>
-          </div>
-        </figure>
+          <DeveloperTerminal />
+        </div>
       </div>
     </section>
   );
