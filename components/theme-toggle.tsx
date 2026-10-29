@@ -1,6 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
+import { Moon, Sun } from "lucide-react";
 
 const storageKey = "portfolio-theme";
 const themeEvent = "portfolio-theme-change";
@@ -48,10 +49,11 @@ export function ThemeToggle() {
       type="button"
       aria-label="Dark mode"
       aria-pressed={theme === "dark"}
+      title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
       onClick={toggleTheme}
-      className="min-h-11 rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium text-foreground hover:border-accent"
+      className="nav-icon rounded-full border border-accent/25 bg-background text-amber hover:border-accent"
     >
-      Dark mode: {theme === "dark" ? "on" : "off"}
+      {theme === "dark" ? <Sun size={18} aria-hidden="true" /> : <Moon size={18} aria-hidden="true" />}
     </button>
   );
 }

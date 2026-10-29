@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
+import { profile, siteMetadata } from "@/data/portfolio";
 import "./globals.css";
 
 const inter = Inter({
@@ -14,8 +16,15 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Arvind Nataraj | Developer Portfolio",
-  description: "Arvind Nataraj's software developer portfolio.",
+  title: siteMetadata.title,
+  description: siteMetadata.description,
+  authors: [{ name: profile.name }],
+  openGraph: {
+    type: "website",
+    title: siteMetadata.title,
+    description: siteMetadata.description,
+    siteName: "Arvind Nataraj Portfolio",
+  },
 };
 
 // Restore the saved preference before paint; dark is the first-visit default.
@@ -39,10 +48,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script dangerouslySetInnerHTML={{ __html: initializeTheme }} />
       </head>
       <body className="min-h-full flex flex-col">
-        <div className="flex justify-end p-4 sm:p-6">
-          <ThemeToggle />
-        </div>
+        <a href="#main-content" className="skip-link">Skip to content</a>
+        <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

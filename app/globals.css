@@ -52,6 +52,10 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background: var(--background);
     color: var(--foreground);
@@ -73,5 +77,269 @@
   :focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 4px;
+  }
+}
+
+/* Navbar and hero use the same semantic tokens in both themes. */
+:root {
+  --button-primary: #ffc45e;
+  --button-primary-text: #151d39;
+}
+
+:root[data-theme="light"] {
+  --button-primary: #7925bd;
+  --button-primary-text: #ffffff;
+}
+
+@layer components {
+  .skip-link {
+    position: fixed;
+    top: 0.75rem;
+    left: 1rem;
+    z-index: 100;
+    transform: translateY(-200%);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--surface);
+    color: var(--foreground);
+  }
+
+  .skip-link:focus {
+    transform: translateY(0);
+  }
+
+  .site-header {
+    position: sticky;
+    top: 1rem;
+    z-index: 50;
+    width: min(80rem, calc(100% - 3rem));
+    margin: 1.25rem auto 0;
+  }
+
+  .navbar-shell {
+    border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+    border-radius: 2.25rem;
+    background: var(--surface);
+    box-shadow: 0 6px 20px color-mix(in srgb, var(--foreground) 12%, transparent);
+  }
+
+  .nav-icon {
+    display: inline-flex;
+    width: 2.75rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-link {
+    position: relative;
+  }
+
+  .nav-link[aria-current="location"]::after {
+    position: absolute;
+    bottom: 0.125rem;
+    left: calc(50% - 2px);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+    content: "";
+  }
+
+  .hero-section {
+    position: relative;
+    isolation: isolate;
+    scroll-margin-top: 7rem;
+    padding: clamp(3.5rem, 7vw, 7rem) 0 5rem;
+  }
+
+  .hero-grid {
+    display: grid;
+    width: min(80rem, calc(100% - 3rem));
+    margin-inline: auto;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .hero-heading {
+    font-size: clamp(3.5rem, 7vw, 5.5rem);
+    line-height: 1.08;
+    letter-spacing: -0.045em;
+  }
+
+  .hero-highlight {
+    color: var(--amber);
+    font-weight: 600;
+  }
+
+  :root[data-theme="light"] .hero-highlight {
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .hero-button, .action-link {
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    border: 1px solid transparent;
+    border-radius: 0.625rem;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+  }
+
+  .hero-button-primary, .action-link-primary {
+    background: var(--button-primary);
+    color: var(--button-primary-text);
+    box-shadow: 0 5px 22px color-mix(in srgb, var(--button-primary) 25%, transparent);
+  }
+
+  .hero-button-secondary, .action-link-secondary {
+    border-color: var(--accent);
+    background: transparent;
+    color: var(--foreground);
+  }
+
+  .hero-artwork {
+    position: relative;
+    display: grid;
+    min-width: 0;
+    min-height: 23rem;
+    place-items: center;
+  }
+
+  a.action-link:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+  }
+
+  .action-link-pending, .hero-button:disabled {
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  .action-link-pending {
+    border-color: color-mix(in srgb, var(--border) 65%, transparent);
+    background: var(--background);
+    color: var(--muted);
+  }
+
+  .project-card {
+    transition: transform 180ms ease, box-shadow 180ms ease;
+  }
+
+  .project-card:hover, .project-card:focus-within {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px color-mix(in srgb, var(--foreground) 12%, transparent);
+  }
+
+  .project-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  /* Thumbnail gradients approximate the reference; these are labeled placeholders. */
+  .project-visual {
+    position: relative;
+    display: flex;
+    aspect-ratio: 16 / 9;
+    min-height: 10rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .project-visual-leads {
+    background: linear-gradient(135deg, #7427ba, #2b3a8c);
+  }
+
+  .project-visual-documents {
+    background: linear-gradient(135deg, #9e4e32, #7427ba);
+  }
+
+  .project-visual-traffic {
+    background: linear-gradient(135deg, #17677b, #2b3a8c);
+  }
+
+  .project-visual-icon {
+    display: flex;
+    width: 7rem;
+    height: 7rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(255 255 255 / 15%);
+    border-radius: 1rem;
+    background: rgb(255 255 255 / 14%);
+    color: #ffffff;
+  }
+
+  .contact-panel {
+    background-image:
+      radial-gradient(ellipse at top left, color-mix(in srgb, var(--accent) 24%, transparent), transparent 45%),
+      radial-gradient(ellipse at bottom right, color-mix(in srgb, var(--accent) 18%, transparent), transparent 45%);
+  }
+
+  .hero-glow {
+    position: absolute;
+    inset: 5%;
+    z-index: -1;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, color-mix(in srgb, var(--accent) 45%, transparent), transparent 70%);
+    filter: blur(32px);
+    pointer-events: none;
+  }
+
+  .illustration-placeholder {
+    display: flex;
+    width: min(100%, 23rem);
+    min-height: 20rem;
+    flex-direction: column;
+    align-items: center;
+    border: 1px dashed color-mix(in srgb, var(--accent) 55%, transparent);
+    border-radius: 1.5rem;
+    padding: 1.75rem;
+    background: color-mix(in srgb, var(--surface) 80%, transparent);
+  }
+
+  @media (min-width: 64rem) {
+    .hero-grid {
+      grid-template-columns: 1.05fr 1fr;
+      gap: 4rem;
+    }
+
+    .hero-artwork {
+      min-height: 28rem;
+    }
+  }
+
+  @media (max-width: 30rem) {
+    .site-header, .hero-grid {
+      width: calc(100% - 2rem);
+    }
+
+    .hero-button, .action-link {
+      width: 100%;
+    }
+
+    .availability-badge {
+      font-size: 0.625rem;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .action-link, .project-card {
+    transition: none;
+  }
+
+  a.action-link:hover, .project-card:hover, .project-card:focus-within {
+    transform: none;
   }
 }
