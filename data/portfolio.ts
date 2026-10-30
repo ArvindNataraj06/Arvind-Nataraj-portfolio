@@ -8,17 +8,19 @@ export type CareerEntry = {
   dateTime?: string;
   startPeriod?: string;
   startDateTime?: string;
-  grade?: { value: string; scale: string };
+  grade?: { label?: string; value: string; scale: string };
   description?: string;
+  responsibilities?: readonly string[];
+  technologies?: readonly string[];
   placeholder?: boolean;
 };
 
-// Only verified facts belong in these entries. Replace the placeholder when ready.
+// Only verified facts belong in these entries.
 export const careerEntries: readonly CareerEntry[] = [
   {
     id: "masters-applied-computer-science",
     kind: "education",
-    title: "M.Sc. Applied Computer Science",
+    title: "Master of Science in Applied Computer Science",
     organization: "SRH University Heidelberg",
     location: "Germany",
     period: "March 2026",
@@ -31,12 +33,40 @@ export const careerEntries: readonly CareerEntry[] = [
     },
   },
   {
-    id: "experience-pending",
+    id: "bachelor-information-science-and-engineering",
+    kind: "education",
+    title: "Bachelor of Engineering in Information Science and Engineering",
+    organization: "Don Bosco Institute of Technology",
+    location: "India",
+    period: "May 2023",
+    dateTime: "2023-05",
+    startPeriod: "August 2019",
+    startDateTime: "2019-08",
+    grade: {
+      label: "CGPA",
+      value: "7.6",
+      scale: "",
+    },
+  },
+  {
+    id: "deepinsightsx-full-stack-developer-intern",
     kind: "experience",
-    title: "Professional details coming soon",
-    description:
-      "Employer, role, dates, and responsibilities will be added once verified.",
-    placeholder: true,
+    title: "Full Stack Developer Intern — AI Applications",
+    organization: "DeepInsightsX",
+    location: "Berlin, Germany",
+    period: "February 2026",
+    dateTime: "2026-02",
+    startPeriod: "September 2025",
+    startDateTime: "2025-09",
+    responsibilities: [
+      "Contributed to frontend and backend development of an AI-powered web application.",
+      "Redesigned the application interface using React.js and Tailwind CSS, improving its structure and usability.",
+      "Worked on backend API development and integration using Python and FastAPI.",
+      "Worked with Redis-based background task processing for asynchronous application workflows.",
+      "Contributed to connecting frontend components with backend services and Firebase Firestore.",
+      "Collaborated with the development team on debugging, testing, and implementing application features.",
+    ],
+    technologies: ["React.js", "Tailwind CSS", "Python", "FastAPI", "Redis", "Firebase Firestore"],
   },
 ];
 

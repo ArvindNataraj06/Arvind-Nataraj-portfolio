@@ -40,7 +40,7 @@ export function CareerCard({ entry }: { entry: CareerEntry }) {
           {entry.kind === "education" && !entry.startPeriod && <span>Completed</span>}
           {entry.startPeriod && (
             <>
-              <time dateTime={entry.startDateTime}>{entry.startPeriod}</time>
+              <time dateTime={entry.startDateTime} className="font-medium text-amber">{entry.startPeriod}</time>
               <span aria-hidden="true">–</span>
               <span className="sr-only">to</span>
             </>
@@ -54,14 +54,30 @@ export function CareerCard({ entry }: { entry: CareerEntry }) {
       {entry.kind === "education" && entry.grade && (
         <div className="mt-4">
           <p className="inline-flex items-center gap-2 rounded-full border border-accent/25 bg-background px-3 py-1 text-sm text-muted">
-            Final grade <strong className="font-semibold text-amber">{entry.grade.value}</strong>
+            {entry.grade.label ?? "Final grade"} <strong className="font-semibold text-amber">{entry.grade.value}</strong>
           </p>
-          <p className="mt-2 text-xs leading-6 text-muted">{entry.grade.scale}</p>
+          {entry.grade.scale && <p className="mt-2 text-xs leading-6 text-muted">{entry.grade.scale}</p>}
         </div>
+      )}
+
+      {entry.responsibilities && (
+        <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-6 text-muted">
+          {entry.responsibilities.map((responsibility) => <li key={responsibility}>{responsibility}</li>)}
+        </ul>
       )}
 
       {entry.description && (
         <p className="mt-4 max-w-prose text-sm leading-7 text-muted">{entry.description}</p>
+      )}
+
+      {entry.technologies && (
+        <ul aria-label={`${entry.title} technologies`} className="mt-5 flex flex-wrap gap-2">
+          {entry.technologies.map((technology) => (
+            <li key={technology} className="rounded border border-tag-border/60 bg-tag-background px-2 py-1 font-mono text-[0.625rem] leading-5 text-tag-foreground">
+              {technology}
+            </li>
+          ))}
+        </ul>
       )}
     </article>
   );
