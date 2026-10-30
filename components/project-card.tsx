@@ -1,4 +1,4 @@
-import { ChartColumn, ExternalLink, FileText, Layers } from "lucide-react";
+import { ChartColumn, FileText, Layers } from "lucide-react";
 import type { Project } from "@/data/portfolio";
 import { GithubIcon } from "@/components/social-icons";
 import { SkillTag } from "@/components/skill-tag";
@@ -12,24 +12,21 @@ export function ProjectCard({ project }: { project: Project }) {
     <article aria-labelledby={`${project.id}-title`} className="project-card flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border border-accent/20 bg-surface shadow-lg shadow-black/10">
       <div className={`project-visual project-visual-${project.visual}`}>
         <span className="project-visual-icon" aria-hidden="true"><Icon size={64} strokeWidth={1.25} /></span>
-        <p className="absolute bottom-3 left-4 font-mono text-[0.625rem] text-white">Screenshot placeholder</p>
       </div>
       <div className="flex flex-1 flex-col p-6">
         <h3 id={`${project.id}-title`} className="text-xl font-semibold leading-snug text-foreground">{project.title}</h3>
-        <p className="mt-3 text-sm leading-7 text-muted">{project.description}</p>
+        <p className="mt-2 text-xs leading-5 text-muted">{project.category} · {project.status}</p>
+        <p className="mt-3 text-sm leading-7 text-muted">
+          {project.description.map((segment, index) => segment.highlight ? (
+            <strong key={index} className="font-medium text-amber">{segment.text}</strong>
+          ) : <span key={index}>{segment.text}</span>)}
+        </p>
         <ul aria-label={`${project.title} technologies`} className="mt-4 flex flex-wrap gap-1.5">
           {project.technologies.map((technology) => <li key={technology}><SkillTag label={technology} /></li>)}
         </ul>
         <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-3 pt-7 text-xs">
-          {project.repositoryUrl ? (
+          {project.repositoryUrl && (
             <a href={project.repositoryUrl} className="project-link inline-flex min-h-11 items-center gap-2 text-accent"><GithubIcon />GitHub<span className="sr-only"> for {project.title}</span></a>
-          ) : (
-            <span aria-disabled="true" className="inline-flex min-h-11 items-center gap-2 text-muted"><GithubIcon />Repository pending</span>
-          )}
-          {project.demoUrl ? (
-            <a href={project.demoUrl} className="project-link inline-flex min-h-11 items-center gap-2 text-accent"><ExternalLink size={15} aria-hidden="true" />Live demo<span className="sr-only"> for {project.title}</span></a>
-          ) : (
-            <span aria-disabled="true" className="inline-flex min-h-11 items-center gap-2 text-muted"><ExternalLink size={15} aria-hidden="true" />Demo pending</span>
           )}
         </div>
       </div>

@@ -85,12 +85,9 @@ export const skills: readonly Technology[] = [
   { name: "HTML5", category: "Frontend", icon: "/icons/skills/html5.svg" },
   { name: "CSS3", category: "Frontend", icon: "/icons/skills/css3.svg" },
   { name: "Tailwind CSS", category: "Frontend", icon: "/icons/skills/tailwindcss.svg" },
-  { name: "Node.js", category: "Backend", icon: "/icons/skills/nodejs.svg" },
   { name: "FastAPI", category: "Backend", icon: "/icons/skills/fastapi.svg" },
-  { name: "Flask", category: "Backend", icon: "/icons/skills/flask.svg", invertInDark: true },
   // A neutral SQL symbol avoids implying knowledge of an unprovided database vendor.
   { name: "SQL", category: "Databases and Cloud", icon: null },
-  { name: "Firebase", category: "Databases and Cloud", icon: "/icons/skills/firebase.svg" },
   { name: "Google Cloud Platform", category: "Databases and Cloud", icon: "/icons/skills/googlecloud.svg" },
   { name: "Git", category: "Development Tools", icon: "/icons/skills/git.svg" },
   { name: "GitHub", category: "Development Tools", icon: "/icons/skills/github.svg", invertInDark: true },
@@ -149,40 +146,98 @@ export const contactContent = {
 };
 
 
+export type ProjectDescriptionSegment = { text: string; highlight?: boolean };
+
 export type Project = {
   id: string;
   title: string;
-  description: string;
+  description: readonly ProjectDescriptionSegment[];
+  category: string;
+  status: string;
   technologies: readonly string[];
   visual: "leads" | "documents" | "traffic";
   repositoryUrl?: string;
-  demoUrl?: string;
 };
 
-// Descriptions supplied by Arvind. Screenshots and project URLs are pending.
+// Project details and repository URLs supplied by Arvind.
 export const projects: readonly Project[] = [
   {
     id: "meta-lead-ads",
-    title: "Meta Lead Ads Live PoC",
-    description:
-      "Real-time lead events from Meta Lead Ads are delivered through a backend and displayed in a React Native application.",
-    technologies: ["React Native", "Node.js", "Express", "Socket.IO"],
+    title: "Meta Lead Ads: Real-Time React Native PoC",
+    category: "Real-Time Systems",
+    status: "Completed PoC",
+    description: [
+      { text: "Built a " },
+      { text: "real-time integration", highlight: true },
+      { text: " using Meta Webhooks and Graph API, Express verification, and Socket.IO to deliver new leads to an open React Native app " },
+      { text: "without manual refresh", highlight: true },
+      { text: "." },
+    ],
+    technologies: ["React Native", "Expo", "TypeScript", "Node.js", "Express", "Socket.IO", "Meta Graph API", "ngrok"],
     visual: "leads",
-  },
-  {
-    id: "docatlas",
-    title: "DocAtlas",
-    description:
-      "A Python-based document processing and PDF question-answering project exploring retrieval-augmented generation.",
-    technologies: ["Python", "PyMuPDF", "RAG concepts"],
-    visual: "documents",
+    repositoryUrl: "https://github.com/ArvindNataraj06/Meta-Lead-ads-PoC",
   },
   {
     id: "ai-traffic-alert-dashboard",
-    title: "AI Traffic Alert Dashboard",
-    description:
-      "A traffic monitoring and predictive modeling project using React, Python, and TomTom traffic data.",
-    technologies: ["React", "Python", "Flask", "TomTom API"],
+    title: "Traffic Incident Prediction & Intelligent Alert Dashboard",
+    category: "Machine Learning & LLM",
+    status: "Master's Thesis",
+    description: [
+      { text: "Made traffic predictions easier to interpret through " },
+      { text: "lane-state prediction", highlight: true },
+      { text: " with Random Forest and CatBoost, plus a LoRA fine-tuned Llama 3.2 model for " },
+      { text: "AI-generated safety explanations", highlight: true },
+      { text: " and risk assessment." },
+    ],
+    technologies: ["Python", "FastAPI", "Scikit-learn", "CatBoost", "PyTorch", "Transformers", "PEFT", "Hugging Face", "React", "TypeScript", "Leaflet"],
     visual: "traffic",
+    repositoryUrl: "https://github.com/ArvindNataraj06/Thesis",
+  },
+  {
+    id: "event-scheduling",
+    title: "Event Scheduling & Management App",
+    category: "Full-Stack & Software Testing",
+    status: "Academic Team Project",
+    description: [
+      { text: "Collaborated on an " },
+      { text: "event scheduling", highlight: true },
+      { text: " app to bring event workflows together. Contributed creation forms, event details and tags, " },
+      { text: "search and filtering", highlight: true },
+      { text: ", and Jest unit tests." },
+    ],
+    technologies: ["React", "Redux", "JavaScript", "HTML", "CSS", "Jest", "Cypress", "GitHub Actions"],
+    visual: "leads",
+    repositoryUrl: "https://github.com/ArvindNataraj06/usability-testing-and-verification-testtrio",
+  },
+  {
+    id: "fraud-detection",
+    title: "Fraud Detection: Google AutoML vs Custom ML",
+    category: "Cloud AI & Model Comparison",
+    status: "Academic Group Project",
+    description: [
+      { text: "Developed a comparative fraud-detection app using approximately " },
+      { text: "6.6 million transactions", highlight: true },
+      { text: " to compare " },
+      { text: "AutoML vs custom models", highlight: true },
+      { text: ", exploring automation and model flexibility while displaying transaction predictions and confidence scores." },
+    ],
+    technologies: ["Google Vertex AI", "Google Cloud Platform", "Python", "Scikit-learn", "PyTorch", "React", "Flask", "Node.js", "Express"],
+    visual: "traffic",
+    repositoryUrl: "https://github.com/ArvindNataraj06/fraud-detection-automl-vs-custom-model-GroupProject",
+  },
+  {
+    id: "docatlas",
+    title: "DocAtlas: AI-Powered Document Intelligence",
+    category: "RAG & Document AI",
+    status: "In Development",
+    description: [
+      { text: "Developing a " },
+      { text: "document intelligence", highlight: true },
+      { text: " app to reduce time spent searching lengthy PDFs, focused on ingestion, text extraction, retrieval-augmented generation, and " },
+      { text: "contextual question answering", highlight: true },
+      { text: "." },
+    ],
+    technologies: ["Python", "FastAPI", "PyMuPDF", "RAG", "Embeddings"],
+    visual: "documents",
   },
 ];
