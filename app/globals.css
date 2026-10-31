@@ -276,6 +276,25 @@
     color: #ffffff;
   }
 
+  .contact-actions .action-link {
+    min-height: 52px;
+    padding-inline: 24px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .contact-actions .action-link-primary {
+    background: #ffc45e;
+    color: #151d39;
+    box-shadow: 0 5px 22px rgb(255 196 94 / 25%);
+  }
+
+  .contact-actions .action-link svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+
   .contact-panel {
     background-image:
       radial-gradient(ellipse at top left, color-mix(in srgb, var(--accent) 24%, transparent), transparent 45%),

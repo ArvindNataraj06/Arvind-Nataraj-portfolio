@@ -1,6 +1,6 @@
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { DeveloperTerminal } from "@/components/developer-terminal";
-import { contactDetails, profile } from "@/data/portfolio";
+import { profile } from "@/data/portfolio";
 import { ActionLink } from "@/components/action-link";
 
 export function Hero() {
@@ -26,9 +26,8 @@ export function Hero() {
 
           <div className="mt-7 flex flex-wrap gap-3">
             <ActionLink href="#projects" label="View Projects" primary iconPosition="end" icon={<ArrowRight size={16} aria-hidden="true" />} />
-            <ActionLink href={contactDetails.resume} label="Download Resume" download icon={<Download size={16} aria-hidden="true" />} />
+            <ActionLink href="#contact" label="Contact Me" iconPosition="end" icon={<ArrowUpRight size={16} aria-hidden="true" />} />
           </div>
-          {!contactDetails.resume && <p className="mt-3 text-xs text-muted">Resume file pending.</p>}
 
           <p className="availability-badge mt-6 inline-flex items-center gap-2 rounded-full border border-accent/20 bg-surface px-3 py-1.5 text-xs text-muted">
             <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400" aria-hidden="true" />
